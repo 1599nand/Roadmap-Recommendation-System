@@ -1,0 +1,152 @@
+==================================.  FastAPI : ======================================================
+FastAPI - The Main Web Framework
+What it is: Modern, fast web API framework for Python
+Why you need it: To build your recommendation system's API endpoints
+Example: Create routes like /recommendations, users, /products.
+
+FastAPI is a Python web framework
+
+It helps you build APIs quickly and safely
+It supports REST style APIs easily
+It adds features like automatic request validation, docs, async support
+
+REST API is a style or pattern for building web services.
+
+It uses HTTP methods like GET, POST, PUT, DELETE
+It uses resources and URLs like users, /items
+It is not a tool or library, just a design approach
+
+
+In short
+REST API = rulebook for how APIs should work
+FastAPI = a tool/framework to build those APIs in Python
+
+Example
+If you want to make a REST API in Python, you can use FastAPI.
+FastAPI can also build GraphQL or other HTTP APIs, but it is most often used for REST.
+
+
+
+
+==================================.  Uvicorn - The Server : ======================================================
+Uvicorn - The Server
+What it is: ASGI server to run your FastAPI app
+Why you need it: FastAPI needs a server to run. Uvicorn is the fastest and most popular choice
+Example: uvicorn main:app --reload starts your server
+
+What python3.12 -m uvicorn app.main:app --reload means
+python3.12
+Uses Python version 3.12 to run the command.
+
+-m uvicorn
+Runs the uvicorn module as a command. Uvicorn is the server that runs FastAPI.
+
+app.main:app
+Tells Uvicorn where your FastAPI app lives:
+
+app = Python package/folder
+main = file main.py
+app = the FastAPI instance inside main.py
+So it loads app/main.py and reads the variable app.
+
+--reload
+Enables auto-reload during development.
+If you change main.py, the server restarts automatically.
+
+================================== SQLAlchemy - Database ORM  ======================================================
+What it is: Object-Relational Mapper for databases
+Why you need it: Makes database operations easy with Python objects instead of raw SQL
+Example: Instead of writing SQL, you write Python classes that represent database tables
+================================== psycopg2-binary - PostgreSQL Drive======================================================
+psycopg2-binary - PostgreSQL Driver
+What it is: Connects Python to PostgreSQL database
+Why you need it: SQLAlchemy needs this to talk to your PostgreSQL database
+Why binary: Pre-compiled version (easier to install than source)
+================================== python-dotenv - Environment Variables ========================================
+python-dotenv - Environment Variables
+What it is: Loads environment variables from .env file
+Why you need it: Keep sensitive info (database passwords, API keys) out of your code
+Example: Store DATABASE_URL=postgresql://user:pass@localhost/db in .env
+
+
+================= backend==================
+
+You are creating a clean backend structure, which is great. Each folder separates one responsibility, so your code stays easier to understand, test, and extend.
+
+api/
+Holds your FastAPI route definitions
+Example: api/users.py, api/recommendations.py
+Maps HTTP endpoints like /recommend, users, /items
+
+
+core/
+Holds app-wide configuration and settings
+Example: core/config.py, core/security.py
+Good place for things like environment loading, app constants, auth setup
+
+
+db/
+Handles the database connection and session
+Example: db/session.py, db/base.py
+Keeps database setup separate from business logic
+
+
+models/
+Contains SQLAlchemy models (database tables)
+Example: models/user.py, models/item.py
+Defines the schema of your database in Python classes
+
+schemas/
+Contains Pydantic models for request/response validation
+Example: schemas/user.py, schemas/recommendation.py
+Used by FastAPI to validate input and shape output
+
+services/
+Contains business logic and reusable functions
+Example: services/user_service.py, services/recommendation_service.py
+Keeps logic out of route handlers, so API endpoints stay thin
+
+
+recommendr/
+Likely your recommendation engine / ML integration layer
+Example: model loading, similarity scoring, recommendation rules
+Good place for product-specific recommendation code
+
+
+==============Git command used in project ============================
+1>.  git init
+starts a new Git repository in this folder
+
+2> git add Revision.txt
+
+stages only Revision.txt for commit
+
+3>git commit -m "Initial commit"
+
+saves the staged file in Git with a message
+
+4>git branch -M main
+
+makes the current branch name main (standard name)
+
+5>git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+
+tells Git where your remote repository is on GitHub
+replace YOUR-USERNAME and YOUR-REPO with your real values
+
+6>git push -u origin main
+
+uploads your commit to GitHub and links your local main branch to the remote branch
+
+
+Simple meaning
+
+git init = start version control here
+git add = choose files to save
+git commit = record a snapshot
+git branch -M main = use main as the branch name
+git remote add origin ... = connect to GitHub
+git push -u origin main = send your code to GitHub
+
+
+======================================================================
