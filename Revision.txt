@@ -368,4 +368,84 @@ automation thinking
 production-oriented design
 
 ============
+What is dffrence between Model and Schema======
 
+SIMPLE ANALOGY
+
+Think of a restaurant.
+
+Schema (Pydantic)
+
+= Waiter taking the order
+
+Checks:
+
+is request valid?
+missing fields?
+correct format?
+
+It handles:
+
+INPUT / OUTPUT VALIDATION
+Model (SQLAlchemy ORM)
+
+= Kitchen + storage system
+
+Handles:
+
+database tables
+inserting rows
+querying data
+updating records
+
+It handles:
+
+DATABASE OPERATIONS
+IN YOUR PROJECT
+1. SCHEMA (user_schema.py)
+class UserCreate(BaseModel):
+    name: str
+    email: str
+    password: str
+    skill_level: str
+
+This defines:
+
+what API expects from frontend.
+
+FastAPI uses it for:
+
+validation
+serialization
+request parsing
+Swagger docs
+EXAMPLE
+
+Frontend sends:
+
+{
+  "name": "Nand",
+  "email": "nand@gmail.com"
+}
+
+Schema says:
+❌ missing password
+
+FastAPI rejects request BEFORE backend logic runs.
+
+2. MODEL (user.py)
+class User(Base):
+
+This defines:
+
+how data is STORED in database.
+
+SQLAlchemy uses it for:
+
+table creation
+inserts
+queries
+updates
+ORM mapping
+
+=================
