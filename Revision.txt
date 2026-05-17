@@ -984,4 +984,5 @@ The next development phase will focus on:
 
 The backend has now evolved from a simple authenticated API system into a real AI-powered educational recommendation platform capable of storing user behavior, understanding learning preferences, tracking educational progress, and generating personalized learning recommendations.
 ===================================================================================
-
+course embeddings=
+======================================
